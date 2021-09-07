@@ -5,10 +5,23 @@
 #![doc = include_str!("../Readme.md")]
 
 mod circle;
+mod ellipse;
+mod extension;
 mod line;
 mod point;
 
-pub use float::{π, Float};
+pub use crate::float::{π, Float};
+
+/// The representation of a ellipse.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Ellipse {
+    a: Float,
+    b: Float,
+    c: Float,
+    d: Float,
+    e: Float,
+    f: Float,
+}
 
 /// A circle.
 #[derive(Clone, Copy, Debug, PartialEq)]

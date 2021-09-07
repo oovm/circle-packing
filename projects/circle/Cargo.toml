@@ -14,6 +14,6 @@ edition = "2021"
 [dev-dependencies]
 
 [features]
-default = []
+default = ["f32"]
 f32 = []
 f64 = []

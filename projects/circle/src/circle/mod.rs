@@ -1,4 +1,3 @@
-
 use crate::{π, Circle, Float, Point};
 
 impl Circle {
