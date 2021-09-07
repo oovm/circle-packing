@@ -1,0 +1,18 @@
+[package]
+name = "circle-packing"
+version = "0.0.0"
+authors = ["Aster <192607617@qq.com>"]
+description = "Circle Packing Problem Solver"
+repository = "https://github.com/oovm/circle-packing"
+documentation = "https://docs.rs/circle-packing"
+readme = "Readme.md"
+license = "MPL-2.0"
+edition = "2018"
+
+[dependencies]
+shape-core = "0.0.6"
+
+[dev-dependencies]
+
+[features]
+default = []
