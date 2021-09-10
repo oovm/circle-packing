@@ -11,12 +11,33 @@ impl Ellipse {
         Self { a, b: b.div(2.0), c, d: d.div(2.0), e: e.div(2.0), f }
     }
     /// Create a new ellipse with the center and the two axes and .
-    pub fn from_transform(center: &Point, major: Float, minor: Float, rotate: Float) -> Self {
-        todo!()
+    pub fn from_transform(center: Point, major: Float, minor: Float, rotate: Float) -> Self {
+        let rotate_rad = rotate.to_radians();
+        let cos_theta = rotate_rad.cos();
+        let sin_theta = rotate_rad.sin();
+
+        let a = major.powi(2) * sin_theta.powi(2) + minor.powi(2) * cos_theta.powi(2);
+        let b = major.powi(2) * sin_theta * cos_theta - minor.powi(2) * sin_theta * cos_theta;
+        let c = major.powi(2) * cos_theta.powi(2) + minor.powi(2) * sin_theta.powi(2);
+        let d = -2.0 * a * center.x - b * center.y;
+        let e = -b * center.x - 2.0 * c * center.y;
+        let f = a * center.x.powi(2) + b * center.x * center.y + c * center.y.powi(2) - major.powi(2) * minor.powi(2);
+
+        Self {
+            a,
+            b,
+            c,
+            d,
+            e,
+            f,
+        }
     }
     /// Create a new ellipse with 5 points.
-    pub fn from_5_points(p1: &Point, p2: &Point, p3: &Point, p4: &Point, p5: &Point) {}
+    pub fn from_5_points(p1: Point, p2: Point, p3: Point, p4: Point, p5: Point) {
+        todo!()
+    }
 }
+
 impl Ellipse {
     /// Return the center of the ellipse.
     pub fn major_axis(&self) -> Float {
