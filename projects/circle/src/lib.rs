@@ -11,9 +11,12 @@ mod line;
 mod point;
 
 pub use crate::float::{π, Float};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// The representation of a ellipse.
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", repr(C), derive(Serialize, Deserialize))]
 pub struct Ellipse {
     a: Float,
     b: Float,
@@ -23,8 +26,9 @@ pub struct Ellipse {
     f: Float,
 }
 
-/// A circle.
+/// The representation of a circle.
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", repr(C), derive(Serialize, Deserialize))]
 pub struct Circle {
     /// Center of the circle.
     pub center: Point,
@@ -32,8 +36,9 @@ pub struct Circle {
     pub radius: Float,
 }
 
-/// A circle.
+/// The representation of a line.
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", repr(C), derive(Serialize, Deserialize))]
 pub struct Line {
     /// Start of the line.
     pub start: Point,
@@ -41,8 +46,9 @@ pub struct Line {
     pub end: Point,
 }
 
-/// A 2D point.
+/// The representation of a point.
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", repr(C), derive(Serialize, Deserialize))]
 pub struct Point {
     /// The x-coordinate.
     pub x: Float,
@@ -55,6 +61,7 @@ pub struct Point {
 mod float {
     /// Float Type
     pub type Float = f32;
+
     /// constant π
     pub const π: Float = std::f32::consts::PI;
 }
@@ -64,6 +71,7 @@ mod float {
 mod float {
     /// Float Type
     pub type Float = f64;
+
     /// constant π
     pub const Pi: Float = std::f64::consts::PI;
 }

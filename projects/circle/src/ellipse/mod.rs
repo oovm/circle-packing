@@ -10,7 +10,7 @@ impl Ellipse {
     pub fn from_coefficient(a: Float, b: Float, c: Float, d: Float, e: Float, f: Float) -> Self {
         Self { a, b: b.div(2.0), c, d: d.div(2.0), e: e.div(2.0), f }
     }
-    /// Create a new ellipse with the center and the two axes and .
+    /// Create a new ellipse with the center and the two axes and rotate.
     pub fn from_transform(center: Point, major: Float, minor: Float, rotate: Float) -> Self {
         let rotate_rad = rotate.to_radians();
         let cos_theta = rotate_rad.cos();
@@ -23,14 +23,7 @@ impl Ellipse {
         let e = -b * center.x - 2.0 * c * center.y;
         let f = a * center.x.powi(2) + b * center.x * center.y + c * center.y.powi(2) - major.powi(2) * minor.powi(2);
 
-        Self {
-            a,
-            b,
-            c,
-            d,
-            e,
-            f,
-        }
+        Self { a, b, c, d, e, f }
     }
     /// Create a new ellipse with 5 points.
     pub fn from_5_points(p1: Point, p2: Point, p3: Point, p4: Point, p5: Point) {
@@ -39,7 +32,7 @@ impl Ellipse {
 }
 
 impl Ellipse {
-    /// Return the center of the ellipse.
+    /// Get the major axis of the ellipse.
     pub fn major_axis(&self) -> Float {
         self.a
     }
