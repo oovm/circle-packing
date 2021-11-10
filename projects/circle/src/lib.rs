@@ -2,7 +2,7 @@
 #![allow(mixed_script_confusables)]
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
-#![doc = include_str!("../Readme.md")]
+#![doc = include_str!("../readme.md")]
 
 mod circle;
 mod ellipse;

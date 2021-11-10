@@ -2,8 +2,8 @@
 name = "circle"
 version = "0.1.9"
 authors = ["Aster <192607617@qq.com>"]
-description = "Circle Packing Problem Solver"
-repository = "https://github.com/oovm/circle-packing"
+description = "Definition of circle and ellipse"
+repository = "https://https://github.com/oovm/circle-packing/tree/master/projects/circle"
 documentation = "https://docs.rs/circle"
 readme = "readme.md"
 license = "MPL-2.0"
