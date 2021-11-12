@@ -31,13 +31,6 @@ impl Circle {
         let center = Point::new(cx + p1.x, cy + p1.y);
         Self { center, radius: center.distance_to(p1) }
     }
-    /// TeX representation of the circle.
-    pub fn tex_normal(&self) -> String {
-        let x0 = self.center.x;
-        let y0 = self.center.y;
-        let r = self.radius;
-        format!("(x-{x0})^2+(y-{y0})^2 = {r}^2")
-    }
 }
 
 impl Circle {

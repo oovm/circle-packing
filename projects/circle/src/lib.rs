@@ -3,6 +3,7 @@
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![doc = include_str!("../readme.md")]
+// #![no_std]
 
 mod circle;
 mod ellipse;
@@ -63,7 +64,7 @@ mod float {
     pub type Float = f32;
 
     /// constant π
-    pub const π: Float = std::f32::consts::PI;
+    pub const π: Float = core::f32::consts::PI;
 }
 
 // noinspection NonAsciiCharacters
@@ -73,5 +74,5 @@ mod float {
     pub type Float = f64;
 
     /// constant π
-    pub const Pi: Float = std::f64::consts::PI;
+    pub const Pi: Float = core::f64::consts::PI;
 }

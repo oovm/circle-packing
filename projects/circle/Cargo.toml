@@ -10,6 +10,7 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
+latexify = { version = "0.1.0", optional = true }
 serde = { version = "1.0.*", features = ["derive"], optional = true }
 
 [dev-dependencies]

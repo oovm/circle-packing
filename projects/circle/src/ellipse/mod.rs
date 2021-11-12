@@ -1,5 +1,5 @@
 use crate::{π, Ellipse, Float, Point};
-use std::ops::Div;
+use core::ops::Div;
 
 impl Ellipse {
     /// Create a new ellipse with the coefficient of equation.

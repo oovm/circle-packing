@@ -15,10 +15,6 @@ impl Point {
         let dy = self.y - other.y;
         (dx * dx + dy * dy).sqrt()
     }
-    /// TeX representation of point
-    pub fn equation(&self) -> String {
-        format!("({}, {})", self.x, self.y)
-    }
 }
 
 impl From<(Float, Float)> for Point {
