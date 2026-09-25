@@ -1,11 +1,15 @@
 {
+    "name": "circle-packing-workspace",
     "private": true,
     "scripts": {
         "build": "cargo build --release",
+        "build:rs": "cargo build --release",
         "test": "cargo test --release",
+        "test:rs": "cargo test --release",
         "fmt": "cargo fmt --all",
-        "push": "wee test && git push",
+        "fmt:rs": "cargo fmt --all",
+        "push": "cargo test --release && git push",
         "reset": "git reset Head~ --soft",
-        "u": "cargo upgrade --workspace"
+        "u": "cargo upgrade --offline --incompatible"
     }
 }

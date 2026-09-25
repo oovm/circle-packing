@@ -1,11 +1,14 @@
 [workspace]
 resolver = "2"
-members = ["projects/*"]
+members = ["projects/crates/*"]
 default-members = [
-    "projects/circle-packing",
+    "projects/crates/circle",
+    "projects/crates/circle-packing",
 ]
+
 exclude = [
     "projects/.DS_Store",
+    "projects/packages",
 ]
 
 [profile.release]
