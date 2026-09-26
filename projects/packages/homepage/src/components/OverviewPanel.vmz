@@ -1,0 +1,20 @@
+<template>
+  <section class="overview">
+    <ul>
+      <li v-for="item in crates" :key="item.name">
+        <strong>{{ item.name }}</strong> — {{ item.summary }}
+      </li>
+    </ul>
+    <p>{{ hint }}</p>
+  </section>
+</template>
+
+<script client>
+export default class OverviewPanel {
+  hint = "Run cargo test --release from the repo root to exercise the Rust crates.";
+  crates = [
+    { name: "circle", summary: "2D/3D points, lines, circles, and ellipses with LaTeX helpers." },
+    { name: "circle-packing", summary: "Circle packing problem solver built on the geometry crate." },
+  ];
+}
+</script>

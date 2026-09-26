@@ -10,7 +10,8 @@ projects/
   crates/
     circle/            # circle and ellipse geometry
     circle-packing/    # circle packing problem solver
-  packages/            # npm workspace (homepage and TS libs, future)
+  packages/
+    homepage/          # demo site (VMZ host shell)
 ```
 
 ## Build
@@ -18,4 +19,10 @@ projects/
 ```bash
 cargo test --release
 # or: pnpm test
+```
+
+## Web
+
+```bash
+pnpm dev:web
 ```
