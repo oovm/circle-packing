@@ -1,20 +1,108 @@
 <template>
   <section class="overview">
-    <ul>
+    <div class="toolbar">
+      <label>Count <input type="number" min="4" max="40" :value="count" @input="onCountInput" /></label>
+      <label>Min radius <input type="number" min="8" max="40" :value="minR" @input="onMinInput" /></label>
+      <label>Max radius <input type="number" min="12" max="80" :value="maxR" @input="onMaxInput" /></label>
+      <Button type="button" @click="regenerate">Pack circles</Button>
+    </div>
+    <p class="meta">Placed {{ circles.length }} / {{ count }} circles (greedy demo, not the Rust solver).</p>
+    <svg :width="width" :height="height" :viewBox="viewBox" class="canvas">
+      <rect :width="width" :height="height" fill="#f8fafc" stroke="#e2e8f0" />
+      <circle
+        v-for="(c, index) in circles"
+        :key="index"
+        :cx="c.x"
+        :cy="c.y"
+        :r="c.radius"
+        :fill="circleFill(c)"
+        fill-opacity="0.85"
+        stroke="#0f172a"
+        stroke-width="1"
+      />
+    </svg>
+    <ul class="crate-list">
       <li v-for="item in crates" :key="item.name">
         <strong>{{ item.name }}</strong> — {{ item.summary }}
       </li>
     </ul>
-    <p>{{ hint }}</p>
   </section>
 </template>
 
+<style>
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.toolbar label {
+  font-size: 0.875rem;
+}
+.toolbar input {
+  margin-left: 0.35rem;
+  width: 4rem;
+}
+.canvas {
+  max-width: 100%;
+  display: block;
+  margin: 0.5rem 0 1rem;
+  border-radius: 8px;
+}
+.meta {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.crate-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+</style>
+
 <script client>
+import { packCircles, type CircleSpec } from "../lib/pack-demo.ts";
+
 export default class OverviewPanel {
-  hint = "Run cargo test --release from the repo root to exercise the Rust crates.";
+  width = 640;
+  height = 420;
+  count = 18;
+  minR = 14;
+  maxR = 36;
+  circles: CircleSpec[] = [];
   crates = [
     { name: "circle", summary: "2D/3D points, lines, circles, and ellipses with LaTeX helpers." },
     { name: "circle-packing", summary: "Circle packing problem solver built on the geometry crate." },
   ];
+
+  get viewBox() {
+    return `0 0 ${this.width} ${this.height}`;
+  }
+
+  circleFill(c: CircleSpec) {
+    return `hsl(${c.hue} 70% 55%)`;
+  }
+
+  onCountInput(event: Event) {
+    this.patchNumber(event, (v) => (this.count = v));
+  }
+
+  onMinInput(event: Event) {
+    this.patchNumber(event, (v) => (this.minR = v));
+  }
+
+  onMaxInput(event: Event) {
+    this.patchNumber(event, (v) => (this.maxR = v));
+  }
+
+  patchNumber(event: Event, apply: (value: number) => void) {
+    const target = event.target as HTMLInputElement | null;
+    if (!target) return;
+    const next = Number.parseInt(target.value, 10);
+    if (Number.isFinite(next)) apply(next);
+  }
+
+  regenerate() {
+    this.circles = packCircles(this.width, this.height, this.count, this.minR, this.maxR);
+  }
 }
 </script>

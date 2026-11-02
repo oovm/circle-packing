@@ -1,12 +1,6 @@
 <template>
-  <AppShell brand="Circle Packing" home-href="/" nav-label="Overview">
-    <Card title="Circle Packing" description="Geometry primitives and packing solvers in Rust.">
-      <Prose>
-        <p>
-          The <code>circle</code> crate defines circles, ellipses, lines, and points. The
-          <code>circle-packing</code> crate builds solvers on top of that geometry core.
-        </p>
-      </Prose>
+  <AppShell brand="Circle Packing" home-href="/" nav-label="Demo">
+    <Card title="Circle Packing" description="Greedy packing playground plus Rust crate overview.">
       <OverviewPanel />
     </Card>
   </AppShell>
